@@ -130,7 +130,7 @@ class EhrlichAndreas_AclCms_Module extends EhrlichAndreas_AbstractCms_Module
             'updated'       => 'updated',
             'enabled'       => 'enabled',
             'role_id'       => 'role_id',
-            'project_id'    => 'project_id',
+            'resource_id'   => 'resource_id',
             'allowed'       => 'allowed',
 		);
     }
@@ -147,8 +147,8 @@ class EhrlichAndreas_AclCms_Module extends EhrlichAndreas_AbstractCms_Module
             'published'             => 'published',
             'updated'               => 'updated',
             'enabled'               => 'enabled',
-            'resource_name'         => 'name',
-            'resource_description'  => 'description',
+            'resource_name'         => 'resource_name',
+            'resource_description'  => 'resource_description',
 		);
     }
 
@@ -181,8 +181,8 @@ class EhrlichAndreas_AclCms_Module extends EhrlichAndreas_AbstractCms_Module
             'published'         => 'published',
             'updated'           => 'updated',
             'enabled'           => 'enabled',
-            'role_name'         => 'name',
-            'role_description'  => 'description',
+            'role_name'         => 'role_name',
+            'role_description'  => 'role_description',
 		);
     }
 
@@ -292,9 +292,9 @@ class EhrlichAndreas_AclCms_Module extends EhrlichAndreas_AbstractCms_Module
         {
             $params['role_id'] = '0';
         }
-        if (! isset($params['project_id']))
+        if (! isset($params['resource_id']))
         {
-            $params['project_id'] = '0';
+            $params['resource_id'] = '0';
         }
         if (! isset($params['allowed']))
         {

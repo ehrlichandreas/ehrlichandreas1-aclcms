@@ -111,11 +111,11 @@ class EhrlichAndreas_AclCms_Adapter_Pdo_Mysql extends EhrlichAndreas_AbstractCms
         $query[] = '`updated` DATETIME NOT NULL DEFAULT \'0001-01-01 00:00:00\', ';
         $query[] = '`enabled` INT(5) NOT NULL DEFAULT \'0\', ';
         $query[] = '`role_id` BIGINT(19) NOT NULL DEFAULT \'0\', ';
-        $query[] = '`project_id` BIGINT(19) NOT NULL DEFAULT \'0\', ';
+        $query[] = '`resource_id` BIGINT(19) NOT NULL DEFAULT \'0\', ';
         $query[] = '`allowed` INT(5) NOT NULL DEFAULT \'0\', ';
         $query[] = 'PRIMARY KEY (`permission_id`), ';
-        $query[] = 'KEY `idx_role_project_id` (`role_id` (19), `project_id` (19)), ';
-        $query[] = 'KEY `idx_project_role_id` (`project_id` (19), `role_id` (19)) ';
+        $query[] = 'KEY `idx_role_project_id` (`role_id`, `resource_id`), ';
+        $query[] = 'KEY `idx_resource_role_id` (`resource_id`, `role_id`) ';
         $query[] = ') ';
         $query[] = 'ENGINE = InnoDB ';
         $query[] = 'DEFAULT CHARACTER SET = utf8 ';
@@ -136,7 +136,7 @@ class EhrlichAndreas_AclCms_Adapter_Pdo_Mysql extends EhrlichAndreas_AbstractCms
         $query[] = '`resource_name` VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT \'\', ';
         $query[] = '`resource_description` TEXT COLLATE utf8_unicode_ci NOT NULL, ';
         $query[] = 'PRIMARY KEY (`resource_id`), ';
-        $query[] = 'KEY `idx_name` (`name`) ';
+        $query[] = 'KEY `idx_name` (`resource_name`) ';
         $query[] = ') ';
         $query[] = 'ENGINE = InnoDB ';
         $query[] = 'DEFAULT CHARACTER SET = utf8 ';
@@ -179,7 +179,7 @@ class EhrlichAndreas_AclCms_Adapter_Pdo_Mysql extends EhrlichAndreas_AbstractCms
         $query[] = '`role_name` VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT \'\', ';
         $query[] = '`role_description` TEXT COLLATE utf8_unicode_ci NOT NULL, ';
         $query[] = 'PRIMARY KEY (`role_id`), ';
-        $query[] = 'KEY `idx_name` (`name`) ';
+        $query[] = 'KEY `idx_name` (`role_name`) ';
         $query[] = ') ';
         $query[] = 'ENGINE = InnoDB ';
         $query[] = 'DEFAULT CHARACTER SET = utf8 ';

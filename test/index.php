@@ -44,3 +44,151 @@ $cmsConfig = array
 );
 
 $aclCms = new EhrlichAndreas_AclCms_ModuleExtended($cmsConfig);
+
+$aclCms->install();
+
+$resources = array
+(
+    'module',
+    'module-submodule',
+    'module-submodule-controller',
+    'module-submodule-controller-action',
+);
+
+$resourceParents = array
+(
+    array
+    (
+        'resource_id'           => '2',
+        'resource_id_parent'    => '1',
+    ),
+    array
+    (
+        'resource_id'           => '3',
+        'resource_id_parent'    => '2',
+    ),
+    array
+    (
+        'resource_id'           => '4',
+        'resource_id_parent'    => '3',
+    ),
+);
+
+$roles = array
+(
+    'guest',
+    'editor',
+    'moderator',
+    'admin',
+    'root',
+);
+
+$roleParents = array
+(
+    array
+    (
+        'role_id'           => '2',
+        'role_id_parent'    => '1',
+    ),
+    array
+    (
+        'role_id'           => '3',
+        'role_id_parent'    => '2',
+    ),
+    array
+    (
+        'role_id'           => '4',
+        'role_id_parent'    => '3',
+    ),
+);
+
+$permissions = array
+(
+    array
+    (
+        'role_id'       => '5',
+        'resource_id'   => '1',
+        'allowed'       => '1',
+    ),
+    array
+    (
+        'role_id'       => '1',
+        'resource_id'   => '1',
+        'allowed'       => '0',
+    ),
+    array
+    (
+        'role_id'       => '1',
+        'resource_id'   => '4',
+        'allowed'       => '1',
+    ),
+    array
+    (
+        'role_id'       => '2',
+        'resource_id'   => '3',
+        'allowed'       => '1',
+    ),
+    array
+    (
+        'role_id'       => '3',
+        'resource_id'   => '2',
+        'allowed'       => '1',
+    ),
+);
+
+foreach ($resources as $resource)
+{
+    $param = array
+    (
+        'resource_name'    => $resource,
+    );
+    
+    #$aclCms->addResource($param);
+}
+
+foreach ($resourceParents as $resourceParent)
+{
+    $param = $resourceParent;
+    
+    #$aclCms->addResourceParent($param);
+}
+
+foreach ($roles as $role)
+{
+    $param = array
+    (
+        'role_name' => $role,
+    );
+    
+    #$aclCms->addRole($param);
+}
+
+foreach ($roleParents as $roleParent)
+{
+    $param = $roleParent;
+    
+    #$aclCms->addRoleParent($param);
+}
+
+foreach ($permissions as $permission)
+{
+    $param = $permission;
+    
+    #$aclCms->addPermission($param);
+}
+
+$acl = $aclCms->getAclObject(true);
+
+echo "<pre>\n\n";
+
+echo 'moderator + module :: ' . $acl->isAllowed('moderator', 'module') . "\n";
+echo 'moderator + module + priviliged :: ' . $acl->isAllowed('moderator', 'module', true) . "\n";
+
+echo 'guest + module-submodule-controller-action :: ' . $acl->isAllowed('guest', 'module-submodule-controller-action') . "\n";
+echo 'guest + module-submodule-controller-action + priviliged :: ' . $acl->isAllowed('guest', 'module-submodule-controller-action', true) . "\n";
+
+echo 'root + module-submodule-controller-action :: ' . $acl->isAllowed('root', 'module-submodule-controller-action') . "\n";
+echo 'root + module-submodule-controller-action + priviliged :: ' . $acl->isAllowed('root', 'module-submodule-controller-action', true) . "\n";
+
+echo "\n</pre>\n\n";
+

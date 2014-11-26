@@ -99,18 +99,18 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
         
         foreach ($resourcesTmp as $resource)
         {
-            $this->acl->addRole($resource['name'], $resource['parent']);
+            $this->acl->addResource($resource['name'], $resource['parent']);
         }
         
         foreach ($permissions as $permission)
         {
             if (empty($permission['allowed']))
             {
-                $this->acl->deny($permission['role_id'], $permission['project_id']);
+                $this->acl->deny($permission['role_id'], $permission['resource_id']);
             }
             else
             {
-                $this->acl->deny($permission['role_id'], $permission['project_id']);
+                $this->acl->allow($permission['role_id'], $permission['resource_id']);
             }
         }
     }
