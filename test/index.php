@@ -181,14 +181,23 @@ $acl = $aclCms->getAclObject(true);
 
 echo "<pre>\n\n";
 
-echo 'moderator + module :: ' . $acl->isAllowed('moderator', 'module') . "\n";
-echo 'moderator + module + priviliged :: ' . $acl->isAllowed('moderator', 'module', true) . "\n";
+foreach ($resources as $resource)
+{
+    echo $resource . " :: \n";
 
-echo 'guest + module-submodule-controller-action :: ' . $acl->isAllowed('guest', 'module-submodule-controller-action') . "\n";
-echo 'guest + module-submodule-controller-action + priviliged :: ' . $acl->isAllowed('guest', 'module-submodule-controller-action', true) . "\n";
+    foreach ($roles as $role)
+    {
+        $isAllowed = $acl->isAllowed($role, $resource);
 
-echo 'root + module-submodule-controller-action :: ' . $acl->isAllowed('root', 'module-submodule-controller-action') . "\n";
-echo 'root + module-submodule-controller-action + priviliged :: ' . $acl->isAllowed('root', 'module-submodule-controller-action', true) . "\n";
+        echo $role . ' :: ' . var_export($isAllowed, true) . "\n";
+        
+        $isAllowed = $acl->isAllowed($role, $resource, true);
+
+        echo $role . ' + privilige :: ' . var_export($isAllowed, true) . "\n";
+    }
+    
+    echo "\n";
+}
 
 echo "\n</pre>\n\n";
 
