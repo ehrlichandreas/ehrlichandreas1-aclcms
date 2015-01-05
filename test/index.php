@@ -59,18 +59,18 @@ $resourceParents = array
 (
     array
     (
-        'resource_id'           => '2',
-        'resource_id_parent'    => '1',
+        'child'     => 'module-submodule',
+        'parent'    => 'module',
     ),
     array
     (
-        'resource_id'           => '3',
-        'resource_id_parent'    => '2',
+        'child'     => 'module-submodule-controller',
+        'parent'    => 'module-submodule',
     ),
     array
     (
-        'resource_id'           => '4',
-        'resource_id_parent'    => '3',
+        'child'     => 'module-submodule-controller-action',
+        'parent'    => 'module-submodule-controller',
     ),
 );
 
@@ -87,18 +87,18 @@ $roleParents = array
 (
     array
     (
-        'role_id'           => '2',
-        'role_id_parent'    => '1',
+        'child'     => 'editor',
+        'parent'    => 'guest',
     ),
     array
     (
-        'role_id'           => '3',
-        'role_id_parent'    => '2',
+        'child'     => 'moderator',
+        'parent'    => 'editor',
     ),
     array
     (
-        'role_id'           => '4',
-        'role_id_parent'    => '3',
+        'child'     => 'admin',
+        'parent'    => 'moderator',
     ),
 );
 
@@ -106,75 +106,76 @@ $permissions = array
 (
     array
     (
-        'role_id'       => '5',
-        'resource_id'   => '1',
-        'allowed'       => '1',
+        'role'          => 'root',
+        'resource'      => 'module',
+        'permission'    => '1',
     ),
     array
     (
-        'role_id'       => '1',
-        'resource_id'   => '1',
-        'allowed'       => '0',
+        'role'          => 'guest',
+        'resource'      => 'module',
+        'permission'    => '0',
     ),
     array
     (
-        'role_id'       => '1',
-        'resource_id'   => '4',
-        'allowed'       => '1',
+        'role'          => 'guest',
+        'resource'      => 'module-submodule-controller-action',
+        'permission'    => '1',
     ),
     array
     (
-        'role_id'       => '2',
-        'resource_id'   => '3',
-        'allowed'       => '1',
+        'role'          => 'editor',
+        'resource'      => 'module-submodule-controller',
+        'permission'    => '1',
     ),
     array
     (
-        'role_id'       => '3',
-        'resource_id'   => '2',
-        'allowed'       => '1',
+        'role'          => 'moderator',
+        'resource'      => 'module-submodule',
+        'permission'    => '1',
     ),
 );
 
 foreach ($resources as $resource)
 {
-    $param = array
-    (
-        'resource_name'    => $resource,
-    );
+    $param = $resource;
     
-    #$aclCms->addResource($param);
+    $aclCms->addReturnResource($param);
 }
 
 foreach ($resourceParents as $resourceParent)
 {
     $param = $resourceParent;
     
-    #$aclCms->addResourceParent($param);
+    $aclCms->setParentResource($param['child'], $param['parent']);
 }
 
 foreach ($roles as $role)
 {
-    $param = array
-    (
-        'role_name' => $role,
-    );
+    $param = $role;
     
-    #$aclCms->addRole($param);
+    $aclCms->addReturnRole($param);
 }
 
 foreach ($roleParents as $roleParent)
 {
     $param = $roleParent;
     
-    #$aclCms->addRoleParent($param);
+    $aclCms->setParentRole($param['child'], $param['parent']);
 }
 
 foreach ($permissions as $permission)
 {
     $param = $permission;
     
-    #$aclCms->addPermission($param);
+    if ($param['permission'])
+    {
+        $aclCms->allow($param['role'], $param['resource']);
+    }
+    else
+    {
+        $aclCms->deny($param['role'], $param['resource']);
+    }
 }
 
 $acl = $aclCms->getAclObject(true);
