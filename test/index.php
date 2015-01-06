@@ -178,7 +178,7 @@ foreach ($permissions as $permission)
     }
 }
 
-$acl = $aclCms->getAclObject(true);
+$aclCms->getAclObject(true);
 
 echo "<pre>\n\n";
 
@@ -188,11 +188,11 @@ foreach ($resources as $resource)
 
     foreach ($roles as $role)
     {
-        $isAllowed = $acl->isAllowed($role, $resource);
+        $isAllowed = $aclCms->isAllowed($role, $resource);
 
         echo $role . ' :: ' . var_export($isAllowed, true) . "\n";
         
-        $isAllowed = $acl->isAllowed($role, $resource, true);
+        $isAllowed = $aclCms->isAllowed($role, $resource, true);
 
         echo $role . ' + privilige :: ' . var_export($isAllowed, true) . "\n";
     }
