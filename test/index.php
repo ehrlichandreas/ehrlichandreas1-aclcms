@@ -217,7 +217,7 @@ foreach ($permissions as $permission)
     }
 }
 
-$aclCms->getAclObject(true);
+//$aclCms->getAclObject(true);
 
 echo "<pre>\n\n";
 
