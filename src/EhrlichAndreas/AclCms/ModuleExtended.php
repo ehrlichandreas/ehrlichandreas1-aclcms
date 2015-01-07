@@ -339,7 +339,7 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
             return false;
         }
         
-        $permission = intval(boolval($permission));
+        $permission = intval(((bool)($permission)));
         
         $param = array
         (
