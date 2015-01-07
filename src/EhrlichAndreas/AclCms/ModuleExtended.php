@@ -456,9 +456,9 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
      */
     public function setParentResource($resource, $resourceParent)
     {
-        $resource_ids = $this->addReturnResource($resource);
-        
         $resource_ids_parent = $this->addReturnResource($resourceParent);
+        
+        $resource_ids = $this->addReturnResource($resource);
         
         if ($resource_ids === false || count($resource_ids) == 0)
         {
@@ -511,9 +511,9 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
     
     public function setParentRole($role, $roleParent)
     {
-        $role_ids = $this->addReturnRole($role);
-        
         $role_ids_parent = $this->addReturnRole($roleParent);
+        
+        $role_ids = $this->addReturnRole($role);
         
         if ($role_ids === false || count($role_ids) == 0)
         {

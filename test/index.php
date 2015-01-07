@@ -148,7 +148,7 @@ foreach ($resources as $resource)
 {
     $param = $resource;
     
-    $aclCms->addReturnResource($param);
+    #$aclCms->addReturnResource($param);
 }
 
 foreach ($resourceParents as $resourceParent)
