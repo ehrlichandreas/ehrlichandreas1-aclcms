@@ -47,14 +47,6 @@ $aclCms = new EhrlichAndreas_AclCms_ModuleExtended($cmsConfig);
 
 $aclCms->install();
 
-$resources = array
-(
-    'module',
-    'module-submodule',
-    'module-submodule-controller',
-    'module-submodule-controller-action',
-);
-
 $resourceParents = array
 (
     array
@@ -143,6 +135,45 @@ $permissions = array
         'permission'    => '1',
     ),
 );
+
+foreach ($roleParents as $roleParent)
+{
+    $roles[] = $roleParent['parent'];
+
+    $roles[] = $roleParent['child'];
+}
+
+$roles = array_values($roles);
+
+$roles = array_combine($roles, $roles);
+
+$resources = array();
+
+foreach ($resourceParents as $resourceParent)
+{
+    $parent = $resourceParent['parent'];
+    
+    $childs = $resourceParent['child'];
+    
+    $resources[] = $parent;
+    
+    if (!is_array($childs))
+    {
+        $childs = array
+        (
+            $childs,
+        );
+    }
+    
+    foreach ($childs as $child)
+    {
+        $resources[] = $child;
+    }
+}
+
+$resources = array_values($resources);
+
+$resources = array_combine($resources, $resources);
 
 foreach ($resources as $resource)
 {
