@@ -74,6 +74,8 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
             $this->acl->addRole($role['name'], $role['parents']);
         }
         
+        #echo '<pre>';
+        
         $resourcesTmp = array();
         
         foreach ($resources as $resource)
@@ -95,6 +97,8 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
             );
         }
         
+        #print_r($resourcesTmp);
+        
         foreach ($resourceParents as $resourceParent)
         {
             $resourceId = $resourceParent['resource_id'];
@@ -102,7 +106,12 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
             $resourceIdParent = $resourceParent['resource_id_parent'];
             
             $resourcesTmp[$resourceId]['parent'] = $resourceIdParent;
+            #print_r($resourceParent);
+            #print_r($resourcesTmp[$resourceId]);
         }
+        
+        #print_r($rolesTmp);
+        #die();
         
         foreach ($resourcesTmp as $resource)
         {
@@ -152,6 +161,10 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
         if (!is_array($resource))
         {
             $resources = array($resource);
+        }
+        else
+        {
+            $resources = $resource;
         }
         
         $resources = array_values($resources);
@@ -233,6 +246,10 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module
         if (!is_array($role))
         {
             $roles = array($role);
+        }
+        else
+        {
+            $roles = $role;
         }
         
         $roles = array_values($roles);

@@ -69,7 +69,15 @@ $resourceParents = array
     ),
     array
     (
-        'child'     => 'module-submodule-controller-action',
+        'child'     => array
+        (
+            'module-submodule-controller-action',
+            'module-submodule-controller-action1',
+            'module-submodule-controller-action2',
+            'module-submodule-controller-action3',
+            'module-submodule-controller-action4',
+            'module-submodule-controller-action5',
+        ),
         'parent'    => 'module-submodule-controller',
     ),
 );
