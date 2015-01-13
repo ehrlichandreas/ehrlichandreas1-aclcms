@@ -169,6 +169,8 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module 
         {
             $resources = $resource;
         }
+        
+        $db = $this->getConnection();
 
         $resources = array_values($resources);
 
@@ -176,7 +178,10 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module 
 
         $param = array
         (
-            'resource_name' => $resources,
+            'where' => array
+            (
+                new EhrlichAndreas_Db_Expr($db->quoteInto('BINARY resource_name in (?)', $resources)),
+            ),
         );
 
         $rowset = $this->getResourceList($param);
@@ -219,7 +224,10 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module 
             (
                 'resource_id' => 'resource_id',
             ),
-            'resource_name' => $resources,
+            'where' => array
+            (
+                new EhrlichAndreas_Db_Expr($db->quoteInto('BINARY resource_name in (?)', $resources)),
+            ),
         );
 
         $rowset = $this->getResourceList($param);
@@ -254,6 +262,8 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module 
         {
             $roles = $role;
         }
+        
+        $db = $this->getConnection();
 
         $roles = array_values($roles);
 
@@ -261,7 +271,10 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module 
 
         $param = array
         (
-            'role_name' => $roles,
+            'where' => array
+            (
+                new EhrlichAndreas_Db_Expr($db->quoteInto('BINARY role_name in (?)', $roles)),
+            ),
         );
 
         $rowset = $this->getRoleList($param);
@@ -304,7 +317,10 @@ class EhrlichAndreas_AclCms_ModuleExtended extends EhrlichAndreas_AclCms_Module 
             (
                 'role_id' => 'role_id',
             ),
-            'role_name' => $roles,
+            'where' => array
+            (
+                new EhrlichAndreas_Db_Expr($db->quoteInto('BINARY role_name in (?)', $roles)),
+            ),
         );
 
         $rowset = $this->getRoleList($param);
