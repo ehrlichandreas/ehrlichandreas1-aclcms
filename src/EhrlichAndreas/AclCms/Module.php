@@ -10,31 +10,37 @@ class EhrlichAndreas_AclCms_Module extends EhrlichAndreas_AbstractCms_Module
      *
      * @var string
      */
-    private $tablePermission = 'acl_permission';
+    protected $tablePermission = 'acl_permission';
 
     /**
      *
      * @var string
      */
-    private $tableResource = 'acl_resource';
+    protected $tableResource = 'acl_resource';
 
     /**
      *
      * @var string
      */
-    private $tableResourceParent = 'acl_resource_parent';
+    protected $tableResourceParent = 'acl_resource_parent';
     
     /**
      *
      * @var string
      */
-    private $tableRole = 'acl_role';
+    protected $tableRole = 'acl_role';
 
     /**
      *
      * @var string
      */
-    private $tableRoleParent = 'acl_role_parent';
+    protected $tableRoleParent = 'acl_role_parent';
+    
+    /**
+     *
+     * @var string 
+     */
+    protected $tableVersion = 'acl_version';
     
     /**
      * Constructor
