@@ -119,6 +119,15 @@ class EhrlichAndreas_AclCms_Module extends EhrlichAndreas_AbstractCms_Module
 
     /**
      * 
+     * @return string
+     */
+    public function getTableVersion ()
+    {
+        return $this->adapter->getTableName($this->tableVersion);
+    }
+
+    /**
+     * 
      * @return array
      */
     public function getFieldsPermission ()
