@@ -1,7 +1,7 @@
 {
     "name":         "ehrlichandreas/ehrlichandreas1-aclcms",
     "description":  "Zend Framework like acl module",
-    "type":         "util",
+    "type":         "library",
     "keywords": 
     [
     ],
@@ -29,6 +29,7 @@
         "php":                                  ">=5.1",
 
         "ehrlichandreas/composer-php52":                "*",
+        
         "ehrlichandreas/ehrlichandreas1-abstractcms":   "dev-master",
         "ehrlichandreas/ehrlichandreas1-db":            "dev-master",
         "ehrlichandreas/ehrlichandreas1-pdo":           "dev-master",
