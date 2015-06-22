@@ -23,40 +23,18 @@
     },
     "repositories":
     [
-        {
-            "type": "git",
-            "url": "https://github.com/ehrlichandreas/composer-php52.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/ehrlichandreas/ehrlichandreas1-abstractcms.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/ehrlichandreas/ehrlichandreas1-db.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/ehrlichandreas/ehrlichandreas1-pdo.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/ehrlichandreas/ehrlichandreas1-util.git"
-        }
     ],
     "require": 
     {
         "php":                                  ">=5.1",
 
         "ehrlichandreas/composer-php52":                "*",
-
         "ehrlichandreas/ehrlichandreas1-abstractcms":   "dev-master",
         "ehrlichandreas/ehrlichandreas1-db":            "dev-master",
         "ehrlichandreas/ehrlichandreas1-pdo":           "dev-master",
         "ehrlichandreas/ehrlichandreas1-util":          "dev-master",
 
         "zendframework/zendframework1" :                "1.*",
-
         "zendframework/zendframework" :                 "2.*"
     },
     "require-dev":
